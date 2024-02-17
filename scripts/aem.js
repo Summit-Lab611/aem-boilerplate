@@ -11,6 +11,7 @@
  */
 
 /* eslint-env browser */
+/* eslint-disable max-classes-per-file */
 
 /**
  * log RUM if part of the sample.
@@ -197,7 +198,6 @@ async function loadModule(jsPath, cssPath, ...args) {
     : Promise.resolve();
   return Promise.all([cssLoaded, decorationComplete]).then(([, api]) => api);
 }
-
 
 /**
  * Loads a non module JS file.
@@ -507,7 +507,6 @@ function readBlockConfig(block) {
   return config;
 }
 
-
 /**
  * Decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
@@ -726,7 +725,6 @@ function getBlockConfig(block) {
     .filter((fn) => typeof fn === 'function')
     .reduce((config, fn) => fn(config, original), { blockName, cssPath, jsPath });
 }
-
 
 /**
  * Loads JS and CSS for a block.

@@ -25,17 +25,6 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 // Add you plugins below
 // window.hlx.plugins.add('/plugins/my-plugin.js');
 
-// Define an execution context
-const pluginContext = {
-  getAllMetadata,
-  getMetadata,
-  loadCSS,
-  loadScript,
-  sampleRUM,
-  toCamelCase,
-  toClassName,
-};
-
 const AUDIENCES = {
   mobile: () => window.innerWidth < 600,
   desktop: () => window.innerWidth >= 600,
@@ -57,6 +46,17 @@ export function getAllMetadata(scope) {
       return res;
     }, {});
 }
+
+// Define an execution context
+const pluginContext = {
+  getAllMetadata,
+  getMetadata,
+  loadCSS,
+  loadScript,
+  sampleRUM,
+  toCamelCase,
+  toClassName,
+};
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -117,7 +117,6 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-
   // Add below snippet early in the eager phase
   if (getMetadata('experiment')
     || Object.keys(getAllMetadata('campaign')).length
@@ -151,7 +150,6 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-
   // Add below snippet at the end of the lazy phase
   if ((getMetadata('experiment')
     || Object.keys(getAllMetadata('campaign')).length
@@ -160,7 +158,7 @@ async function loadLazy(doc) {
     const { loadLazy: runLazy } = await import('../plugins/experimentation/src/index.js');
     await runLazy(document, { audiences: AUDIENCES }, pluginContext);
   }
-  
+
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
