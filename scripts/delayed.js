@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-cycle
+// eslint-disable-next-line no-unused-vars
 import { sampleRUM, loadScript } from './aem.js';
 
 // Core Web Vitals RUM collection
